@@ -1,3 +1,9 @@
+<?php
+//INI BUAT AMBIL DATA USER DARI SESSION
+$no_indihome =  $this->session->userdata("no_indihome");
+$nilai = $this->db->query("SELECT * FROM pelanggan WHERE no_indihome = '" . $no_indihome . "'")->result_array();
+?>
+
 <!doctype html>
 <html lang="en">
    <head>
@@ -13,7 +19,7 @@
       <title>Pevita</title>
    </head>
    <body class="d-flex flex-column min-vh-100 bg-light">
-
+   <?php echo $this->session->flashdata('pesan'); ?>
       <div class="container flex-grow-1 flex-shrink-0 py-5">
          <div class="card mb-5 p-4 bg-white shadow-sm">
             <h3>Pendaftaran</h3>
@@ -45,17 +51,17 @@
                      <div id="test-form-1" role="tabpanel" class="bs-stepper-pane fade" aria-labelledby="stepperFormTrigger1">
                         <div class="form-group">
                            <label for="inputMailForm">Nomor Indihome <span class="text-danger font-weight-bold">*</span></label>
-                           <input id="inputnoindihome" type="number" name="no_indihome" id="no_indihome" class="form-control" oninput="javascript: if (this.value.length > this.minLength) this.value = this.value.slice(0, this.minLength);" minlength="12"  placeholder="Enter no indihome" required>
+                           <input id="inputnoindihome" type="number" name="no_indihome" id="no_indihome" class="form-control" oninput="javascript: if (this.value.length > this.minLength) this.value = this.value.slice(0, this.minLength);" minlength="12"  value="<?php print_r($nilai[0]["no_indihome"]); ?>" disabled>
                            <div class="invalid-feedback">Nomor indihome harus terdiri dari 12 angka</div>
                         </div>
                         <div class="form-group">
                            <label for="inputMailForm">Nomor Telepon <span class="text-danger font-weight-bold">*</span></label>
-                           <input id="inputnotelepon" name="no_telepon" id="no_telepon" type="number" class="form-control" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" minlength="10" maxlength="13" placeholder="Enter no indihome" required>
+                           <input id="inputnotelepon" name="no_telepon" id="no_telepon" type="number" class="form-control" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" minlength="10" maxlength="13" value="<?php print_r($nilai[0]["no_telepon"]); ?>" required>
                            <div class="invalid-feedback">Nomor telepon harus terdiri dari 10-13 angka</div>
                         </div>
                         <div class="form-group">
                            <label for="inputMailForm">Nama Lengkap <span class="text-danger font-weight-bold">*</span></label>
-                           <input id="inputnama" name="nama_lengkap" id="nama_lengkap" type="text" class="form-control" placeholder="Enter no indihome" required>
+                           <input id="inputnama" name="nama_lengkap" id="nama_lengkap" type="text" class="form-control" value="<?php print_r($nilai[0]["nama_lengkap"]); ?>"required>
                            <div class="invalid-feedback">Harap isi dengan nama lengkap</div>
                         </div>
                         <span class="btn btn-danger btn-next-form">Next</span>
@@ -64,9 +70,11 @@
                         <div class="form-group">
                            <label>Kota Kabupaten:</label>
                            <select class="form-control select2" name="kota_kabupaten" id="kota_kabupaten" required>
+                              
                            <option>Pilih Kota Kabupaten</option>
+                        
                               <?php foreach($Domisili as $row):?>
-                                 <option value="<?php echo $row->id;?>"><?php echo $row->nama_kota_kabupaten;?></option>
+                                 <option value="<?php echo $row->id;?>" <?php if($row->id == $nilai[0]["kota_kabupaten_id"]) echo 'selected' ;?>><?php echo $row->nama_kota_kabupaten;?></option>
                               <?php endforeach;?>
                            </select>
                         </div>
