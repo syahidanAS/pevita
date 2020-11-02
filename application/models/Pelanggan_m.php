@@ -124,6 +124,7 @@ class Pelanggan_m extends CI_Model
         return $this->db->get_where($this->_table, ["id" => $id])->row();
     }
 
+    //UNTUK MENAMBAH PELANGGAN BARU
     function save_pelanggan(){
         $no_indihome   = $this->input->post('no_indihome',TRUE);
         $no_telepon    = $this->input->post('no_telepon',TRUE);
@@ -172,6 +173,7 @@ class Pelanggan_m extends CI_Model
         redirect('Pelanggan');
     }
 
+    //UNTUK UPLOAD FOTO KTP
     public function upload_file()
     {
             $config['upload_path']          = './upload/';
