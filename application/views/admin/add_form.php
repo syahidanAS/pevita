@@ -178,7 +178,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			$('#kota_kabupaten').change(function(){ 
 					var id=$(this).val();
 					$.ajax({
-						url : "<?php echo site_url('Admin_add/get_Kecamatan');?>",
+						url : "<?php echo site_url('Admin/get_Kecamatan');?>",
 						method : "POST",
 						data : {id: id},
 						async : true,
@@ -198,7 +198,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			$('#kecamatan').change(function(){ 
 					var id=$(this).val();
 					$.ajax({
-						url : "<?php echo site_url('Admin_add/get_Desa');?>",
+						url : "<?php echo site_url('Admin/get_Desa');?>",
 						method : "POST",
 						data : {id: id},
 						async : true,
@@ -219,7 +219,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			$('#desa_kelurahan').change(function(){ 
 					var id=$(this).val();
 					$.ajax({
-						url : "<?php echo site_url('Admin_add/get_Pos');?>",
+						url : "<?php echo site_url('Admin/get_Pos');?>",
 						method : "POST",
 						data : {id: id},
 						async : true,
