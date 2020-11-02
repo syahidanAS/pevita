@@ -165,6 +165,7 @@ class Pelanggan_m extends CI_Model
             'last_updated_at'	    => $date.' '.$time,
             'status'	            => $status
         );
+    //Lanjutin
     $this->db->insert('kartu_tanda_penduduk',$save_ktp);
     $this->db->insert('pelanggan', $save);
    
